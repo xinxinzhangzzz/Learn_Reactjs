@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+
+	<div id="app"></div>
+
+	<script src="../lib/react.js"></script>
+	<script src="../lib/react-dom.js"></script>
+	<script src="../lib/babel.js"></script>
+
+	<script type="text/babel">
+
+		class App extends React.Component {
+			// 组件数据
+			constructor() {
+				super()
+
+				this.state = {
+					message: "Hello xinxin"
+				}
+			}
+
+			// 2.对需要绑定的方法,提前绑定好this
+			// changeBtnClick = this.changeBtnClick.bind(this)
+
+			// 组件方法
+			changeBtnClick() {
+				this.setState({
+					message: "xinxin"
+				})
+			}
+
+			// 宣汉内容 render方法
+			render() {
+				// 1.对需要绑定的方法,绑定this, 在类中,默认启用严格模式,类中方法的this是undefined
+
+				return (
+					<div className="box">
+						<h2>{this.state.message}</h2>
+
+						<button onClick={this.changeBtnClick.bind(this)}>按钮</button>
+					</div>
+				)
+			}
+		}
+
+		const root = ReactDOM.createRoot(document.querySelector("#app"))
+		root.render(<App />)
+
+	</script>
+
+</body>
+
+</html>

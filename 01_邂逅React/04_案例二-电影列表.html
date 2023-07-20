@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+
+	<div id="app"></div>
+
+	<script src="../lib/react.js"></script>
+	<script src="../lib/react-dom.js"></script>
+	<script src="../lib/babel.js"></script>
+
+	<script type="text/babel">
+
+		class App extends React.Component {
+			constructor() {
+				super()
+
+				this.state = {
+					movies: ["星际穿越", "大话西游", '流浪地球', '夏洛特烦恼', '火星救援', '武林外传']
+				}
+			}
+
+			render() {
+
+				// 方式1
+				// return (
+				// 	<div>
+				// 		<ul>
+				// 			<li>{this.state.movies[0]}</li>
+				// 			<li>{this.state.movies[1]}</li>
+				// 			<li>{this.state.movies[2]}</li>
+				// 			<li>{this.state.movies[3]}</li>
+				// 			<li>{this.state.movies[4]}</li>
+				// 			<li>{this.state.movies[5]}</li>
+				// 		</ul>
+				// 	</div>
+				// )
+
+				// 方式2 
+				// const liEls = []
+				// for (let i = 0; i < this.state.movies.length; i++) {
+				// 	liEls.push(<li>{this.state.movies[i]}</li>)
+				// }
+
+				// return (
+				// 	<div>
+				// 		<ul>{liEls}</ul>
+				// 	</div>
+				// )
+
+				// 方式3
+				return (
+					<div>
+						<ul>{this.state.movies.map(movie => <li>{movie}</li>)}</ul>
+					</div>
+				)
+			}
+		}
+
+		const root = ReactDOM.createRoot(document.querySelector("#app"))
+		root.render(<App />)
+
+	</script>
+
+</body>
+
+</html>

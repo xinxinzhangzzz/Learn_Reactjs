@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+
+	<div id="root"></div>
+
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+	<script type="text/babel">
+
+		class App extends React.Component {
+			constructor() {
+				super()
+
+				this.state = {
+					count: 0
+				}
+			}
+
+			increment = this.increment.bind(this)
+			decrement = this.decrement.bind(this)
+
+			increment() {
+				this.setState({
+					count: this.state.count + 1
+				})
+			}
+
+			decrement() {
+				this.setState({
+					count: this.state.count - 1
+				})
+			}
+
+			render() {
+				const { count } = this.state
+				return (
+					<div>
+						<button onClick={this.increment}>加1</button>
+						<span>{count}</span>
+						<button onClick={this.decrement}>减1</button>
+					</div>
+				)
+			}
+		}
+
+		// 创建根节点
+		const root = ReactDOM.createRoot(document.querySelector("#root"))
+		// 渲染根节点
+		root.render(<App />)
+	</script>
+
+</body>
+
+</html>
