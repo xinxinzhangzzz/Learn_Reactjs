@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+
+	<div id="root"></div>
+
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+	<script type="text/babel">
+
+		class App extends React.Component {
+			constructor() {
+				super()
+
+				this.state = {
+					name: "xinxin",
+					age: 18,
+					movies: ["大话西游", '星际穿越', '动物世界', '武林外传'],
+
+					unde: undefined,
+					hiNull: null,
+					isMan: true,
+
+					friend: {
+						name: "kobe",
+						age: 22
+					},
+
+					firstName: "zhang",
+					lastName: "xinxin"
+				}
+			}
+
+			render() {
+
+				// JSX嵌入变量作为子元素时:
+				const { name, age, movies } = this.state
+				const { unde, hiNull, isMan } = this.state
+				const { friend } = this.state
+				const { firstName, lastName } = this.state
+
+				const currentAge = age > 18 ? '成年' : '未成年'
+
+				const movieLiEls = movies.map(movie => <li key={movie}>{movie}</li>)
+
+				return (
+					<div>
+						{/* 1.当变量是Number,string,array类型时,可以直接显示 */}
+						<div>{name}</div>
+						<div>{age}</div>
+						<div>{movies}</div>
+
+						{/* 2.当变量是null,undefiend,boolean类型时,内容会为空 */}
+						<div>{unde}</div>
+						<div>{hiNull}</div>
+						<div>{isMan}</div>
+
+						{/* 如果希望显示null,undefined和boolean,需要转成字符串 */}
+						<div>{unde + ''}</div>
+						<div>{String(hiNull)}</div>
+						<div>{isMan + ''}</div>
+
+						{/* 3.对象类型不能直接作为子元素, 否则会报错 not valid as React child */}
+						{/* <div>{friend}</div> */}
+						<div>{friend.name}</div>
+						<div>{friend.age}</div>
+						{/* 想要拿到key */}
+						<div>{Object.keys(friend)[0]}</div>
+						<div>{Object.keys(friend)[1]}</div>
+
+						{/* 4.也可以插入对应的表达式 */}
+						<div>{10 + 20}</div>
+						<div>{firstName + lastName}</div>
+						<div>{currentAge}</div>
+
+						{/* 5.也可以调用方法获取结果 */}
+						<ul>{movieLiEls}</ul>
+						<ul>{this.getMovieLi()}</ul>
+					</div>
+				)
+			}
+
+			getMovieLi() {
+				return this.state.movies.map(movie => <li key={movie}>{movie}</li>)
+			}
+		}
+
+		// 创建根节点
+		const root = ReactDOM.createRoot(document.querySelector("#root"))
+		// 渲染根节点
+		root.render(<App />)
+	</script>
+
+</body>
+
+</html>

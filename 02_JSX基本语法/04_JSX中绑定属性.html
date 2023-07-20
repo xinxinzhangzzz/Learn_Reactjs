@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+
+	<div id="root"></div>
+
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+	<script type="text/babel">
+
+		class App extends React.Component {
+			constructor() {
+				super()
+
+				this.state = {
+					title: "我是title",
+					imgUrl: 'https://gimg2.baidu.com/image_search/src=http%3A%2F%2Fsafe-img.xhscdn.com%2Fbw1%2F8243b817-cf10-4745-b603-32e02dc51bda%3FimageView2%2F2%2Fw%2F1080%2Fformat%2Fjpg&refer=http%3A%2F%2Fsafe-img.xhscdn.com&app=2002&size=f9999,10000&q=a80&n=0&g=0n&fmt=auto?sec=1692436137&t=afbff55f9fdb4281011c79a3b1005170',
+					href: 'https://www.baidu.com',
+					isActive: true,
+
+					h1Style: {
+						fontSize: "30px",
+						color: "red",
+						fontWeight: "bold"
+					}
+				}
+			}
+
+
+			render() {
+
+				const { title, imgUrl, href, isActive, h1Style } = this.state
+
+				// 绑定class:
+				// 写法1: 字符串的拼接
+				const className = `abc cba ${isActive ? 'active' : ''}`
+
+				// 写法2: 将所有的class放到一个数组中
+				const classNameList = ['aaa', 'bbb', 'ccc']
+				if (isActive) classNameList.push('active')
+
+
+				return (
+					<div>
+						{/* 1.基本属性的绑定 */}
+						<div title={title}>哈哈哈哈</div>
+						<img src={imgUrl} />
+						<a href={href}>百度一下</a>
+
+						{/* 2.绑定class属性: 最少使用className */}
+						<h2 className={className}>嘿嘿嘿</h2>
+						<h2 className={classNameList.join(' ')}>嗷嗷嗷</h2>
+
+						{/* 3.绑定style属性: 绑定对象类型 */}
+						<h1 style={h1Style}>呵呵呵呵呵</h1>
+					</div>
+				)
+			}
+		}
+
+		// 创建根节点
+		const root = ReactDOM.createRoot(document.querySelector("#root"))
+		// 渲染根节点
+		root.render(<App />)
+	</script>
+
+</body>
+
+</html>

@@ -1,0 +1,63 @@
+{
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+
+<body>
+
+	<div id="root"></div>
+
+	<script crossorigin src="https://unpkg.com/react@18/umd/react.development.js"></script>
+	<script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+	<script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+
+	<script type="text/babel">
+
+		class App extends React.Component {
+			constructor() {
+				super()
+
+				this.state = {
+					count: 0
+				}
+			}
+
+
+			increment() {
+			}
+
+			decrement() {
+
+			}
+
+			render() {
+				const { count } = this.state
+
+				// 1.jsx结构中只能有一个根元素
+				// 2.jsx结构通常会包裹一个(),它会将jsx当做一个整体,实现换行
+				// 3.jsx可以是单标签,也可以是双标签,但是单标签必须以 /> 结尾
+				return (
+					<div>
+						<h1>哈哈哈</h1>
+						<br />
+						<h2>嘿嘿嘿</h2>
+					</div>
+				)
+			}
+		}
+
+		// 创建根节点
+		const root = ReactDOM.createRoot(document.querySelector("#root"))
+		// 渲染根节点
+		root.render(<App />)
+	</script>
+
+</body>
+
+</html>}
